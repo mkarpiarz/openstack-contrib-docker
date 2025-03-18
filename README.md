@@ -21,6 +21,8 @@ All of the arguments are required and omitting any one of them will result in an
 The command '/bin/sh -c git config --global user.name $GIT_USERNAME' returned a non-zero code: 1
 ```
 
+You can bake an existing git config into the image by placing it in `gitconfig` in this directory.
+
 ## Usage
 Most projects will want you to create a bug report on [Launchpad](https://launchpad.net/openstack) first. Use your Ubuntu One account to log in here and head to the "Bugs" tab on the project's subpage.
 
@@ -52,3 +54,4 @@ For more information, read [Developer’s Guide](https://docs.openstack.org/infr
 
 1. https://docs.openstack.org/infra/manual/developers.html
 1. https://superuser.com/questions/887712/how-do-i-change-the-highlighted-length-of-git-commit-messages-in-vim
+1. https://stackoverflow.com/questions/31528384/conditional-copy-add-in-dockerfile

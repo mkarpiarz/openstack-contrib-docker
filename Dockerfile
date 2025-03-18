@@ -32,4 +32,7 @@ ENV EDITOR=/usr/bin/vim
 # vim config
 COPY vimrc /root/.vimrc
 
+# git config (if exists)
+COPY gitconfig* /root/.gitconfig
+
 WORKDIR /repo
