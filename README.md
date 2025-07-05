@@ -36,6 +36,9 @@ docker run -dit --name openstack-contrib -v <private-SSH-key>:/root/.ssh/id_rsa:
 git-review -s
 # git add, git commit, ...
 reno new <some-name>
+# Some projects, like kolla-ansible, may ask to use a template when submitting bug fixes. See:
+# https://docs.openstack.org/kolla-ansible/latest/contributor/release-notes.html#fixes
+# reno new --from-template releasenotes/templates/fix.yml bug-<bug-number>
 git add changelog/*
 git commit -a
 git show
