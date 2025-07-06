@@ -12,14 +12,18 @@ $ docker build . \
 --build-arg GIT_USERNAME="Firstname Lastname" \
 --build-arg GIT_EMAIL=your_email@youremail.com \
 --build-arg GERRIT_USERNAME=yourgerritusername \
+[ --build-arg DOCKER_UID=$(id -u) ] \
+[ --build-arg DOCKER_GID=$(id -g) ] \
+[ --build-arg DOCKER_USER=$(whoami) ] \
 -t openstack-contrib:latest
 ```
 
-All of the arguments are required and omitting any one of them will result in an error message like this one:
+Arguments which are not in square brackets are required and omitting any one of them will result in an error message like this one:
 
 ```
 The command '/bin/sh -c git config --global user.name $GIT_USERNAME' returned a non-zero code: 1
 ```
+Arguments in square brackets are optional but highly recommended.
 
 You can bake an existing git config into the image by placing it in `gitconfig` in this directory.
 
@@ -32,7 +36,7 @@ Once you're ready to submit your change, run the following commands:
 git clone https://opendev.org/openstack/<project-name>
 cd <project-name>
 # Create your feature branch (call it something like "bug-<bug-number>") and modify the files but don't commit yet
-docker run -dit --name openstack-contrib -v <private-SSH-key>:/root/.ssh/id_rsa:ro -v <public-SSH-key>:/root/.ssh/id_rsa.pub:ro -v $(pwd):/repo openstack-contrib:latest bash
+docker run -dit --name openstack-contrib -v <private-SSH-key>:${HOME}/.ssh/id_rsa:ro -v <public-SSH-key>:${HOME}/.ssh/id_rsa.pub:ro -v $(pwd):/repo openstack-contrib:latest bash
 git-review -s
 # git add, git commit, ...
 reno new <some-name>
@@ -58,3 +62,5 @@ For more information, read [Developer’s Guide](https://docs.openstack.org/infr
 1. https://docs.openstack.org/infra/manual/developers.html
 1. https://superuser.com/questions/887712/how-do-i-change-the-highlighted-length-of-git-commit-messages-in-vim
 1. https://stackoverflow.com/questions/31528384/conditional-copy-add-in-dockerfile
+1. https://www.baeldung.com/ops/docker-set-user-container-host
+1. https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
