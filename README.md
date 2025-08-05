@@ -44,7 +44,7 @@ reno new <some-name>
 # https://docs.openstack.org/kolla-ansible/latest/contributor/release-notes.html#fixes
 # reno new --from-template releasenotes/templates/fix.yml bug-<bug-number>
 git add changelog/*
-git commit -a
+git commit -a --signoff [--amend]
 git show
 # Finally, when the change is ready, push it out:
 git-review
@@ -64,3 +64,4 @@ For more information, read [Developer’s Guide](https://docs.openstack.org/infr
 1. https://stackoverflow.com/questions/31528384/conditional-copy-add-in-dockerfile
 1. https://www.baeldung.com/ops/docker-set-user-container-host
 1. https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration
+1. https://gerrit-review.googlesource.com/Documentation/user-signedoffby.html
